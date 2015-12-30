@@ -8,8 +8,9 @@ import CharacterProfileStore from '../stores/CharacterProfileStore';
 import CharacterProfileActions from '../actions/CharacterProfileActions';
 
 import CharacterSummary from './CharacterSummary';
-import Item from './Item';
+// import Item from './Item';
 // import ItemContainer from './ItemContainer';
+import Equipment from './Equipment';
 
 class CharacterProfile extends React.Component {
 
@@ -44,25 +45,12 @@ class CharacterProfile extends React.Component {
   }
 
   render() {
-    // && this.state.fetching === false
-    if(this.state.gw2apidata && this.state.gw2apidata.equipment) {
-      var equipmentList = this.state.gw2apidata.equipment.map((item, index) => {
-        return (
-          <li key={item.id}>
-            <Item itemData={this.state.gw2apidata.equipment[index]} />
-          </li>
-        )
-      });
-    }
 
-    // wrap below in if (this.state.gw2apidata) for loading div
     return (
       <div>
         <h1>Profile Page</h1>
         <CharacterSummary gw2apidata={this.state.gw2apidata} error={this.state.didFail} />
-        <ul>
-          {equipmentList}
-        </ul>
+        <Equipment data={this.state.gw2apidata} />
       </div>
     );
 
