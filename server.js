@@ -35,6 +35,44 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //7D549F4F-47ED-6C4B-B17F-B791BFEA7CED49A8F2F1-B0F2-4770-9AD1-3A4C575CBF7E
 /**
+ * GET /api/keysearch
+ * Check key is valid
+ */
+app.get('/api/keysearch', function(req, res, next) {
+  let apikey = req.query.apikey;
+  let keyPermissionsLookupUrl = 'https://api.guildwars2.com/v2/tokeninfo';
+
+  let requestLoad = {
+    url: keyPermissionsLookupUrl,
+    headers: {
+      Authorization : 'Bearer ' + apikey
+    }
+  };
+
+  rp(requestLoad)
+  .then(function (body) {
+    let data = JSON.parse(body);
+    res.send(data);
+  })
+  .catch(errors.StatusCodeError, function (reason) {
+    // The server responded with a status codes other than 2xx.
+    // Check reason.response.statusCode.
+    res.status(reason.response.statusCode).send(
+      'gw2api error: ' + reason.response.statusCode
+    );
+  })
+  .catch(errors.RequestError, function (reason) {
+    // The request failed due to technical reasons.
+    // reason.cause is the Error object Request would pass into a callback
+    // TO DO: handle better
+    res.status(500).send(
+      'request error: ' + reason.cause
+    );
+  })
+
+});
+
+/**
  * GET /api/characters
  * Find characters on api key
  */
