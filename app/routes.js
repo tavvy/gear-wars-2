@@ -1,17 +1,15 @@
 import React from 'react';
-import {Route} from 'react-router';
+import {Route, IndexRoute} from 'react-router';
 import App from './components/App';
 import Home from './components/Home';
-import Characters from './components/Characters';
-import CharacterProfile from './components/CharacterProfile';
-import KeySearch from './components/KeySearch';
+import Create from './components/Create';
 
 export default (
   <Route component={App}>
     <Route path='/' component={Home} />
-    <Route path='/characters' component={Characters} />
-    <Route path='/characters/:apikey' component={Characters} />
-    <Route path='/profilepage/:characterName' component={CharacterProfile} />
-    <Route path='/v1' component={KeySearch} />
+    <Route path='create' component={Create} />
+    <Route path='create/:apikey' component={Create} />
+    <Route path='create/:apikey/:character' component={Create} />
   </Route>
 );
+

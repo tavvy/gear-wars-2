@@ -4,7 +4,6 @@ class HelpBlock extends React.Component {
 
   render() {
 
-    
     if(this.props.data && this.props.data.status == 403) {
       return (
         <span className='help-block'>

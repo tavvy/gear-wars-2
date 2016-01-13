@@ -33,7 +33,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-//7D549F4F-47ED-6C4B-B17F-B791BFEA7CED49A8F2F1-B0F2-4770-9AD1-3A4C575CBF7E
 /**
  * GET /api/keysearch
  * Check key is valid

@@ -9,7 +9,7 @@ class Item extends React.Component {
       var upgradeList = this.props.itemData.upgrades.map((item, index) => {
         if (item && item.id) {
           return (
-            <li key={this.props.itemData.id + item.id + index}>
+            <li key={index}>
               <small>{item.name}</small>
             </li>
           )
@@ -21,7 +21,7 @@ class Item extends React.Component {
     if(this.props.itemData && this.props.itemData.infusions) {
       var infusionList = this.props.itemData.infusions.map((item, index) => {
         return (
-          <li key={this.props.itemData.id + item.id + index}>
+          <li key={index}>
             <small>{item.name}</small>
           </li>
         )

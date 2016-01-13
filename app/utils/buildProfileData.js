@@ -1,6 +1,14 @@
 import Async from 'async';
 
+var building = false;
+
 export function fetchProfileData(request, callback) {
+  if (building) {
+    return callback({
+      stillBuilding: true,
+      text: 'busy building profile'
+    });
+  }
   return buildProfile(request, callback)
 }
 
@@ -8,6 +16,7 @@ function buildProfile(args, callback) {
   const APIKEY = args.apikey;
   const CHARACTER = args.characterName;
 
+  building = true;
   toastr.info('Building a profile for: ' + CHARACTER);
 
   Async.auto({
@@ -86,9 +95,10 @@ function buildProfile(args, callback) {
       if (err) {
         toastr.error('There was an error building the profile data:' + err)
       } else {
-        toastr.success('Finished building profile');
+        toastr.success('Finished building profile for ' + CHARACTER);
       }
       callback(err, results.mergeResults);
+      building = false;
   });
 
 }

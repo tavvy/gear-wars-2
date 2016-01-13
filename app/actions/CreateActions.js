@@ -3,12 +3,16 @@
 import alt from '../alt';
 import {assign} from 'underscore';
 
-class KeySearchActions {
+class createActions {
   constructor() {
     this.generateActions(
       'updateApikey',
+      'resetApikey',
+      'setActiveCharacter',
       'checkApikeySuccess',
-      'checkApikeyFail'
+      'checkApikeyFail',
+      'getCharactersSuccess',
+      'getCharactersFail'
     );
   }
 
@@ -21,7 +25,6 @@ class KeySearchActions {
     })
       .done((data) => {
         //merge the payload and data
-        console.log('ajax success')
         let response = assign({}, payload, data);
         this.checkApikeySuccess(response);
       })
@@ -36,6 +39,27 @@ class KeySearchActions {
       });
   }
 
+  getCharacters(payload) {
+    $.ajax({
+      url: '/api/characters',
+      data: {
+        apikey: payload.apikey
+      }
+    })
+      .done((data) => {
+        //merge the payload and data
+        let response = assign({}, payload, data);
+        this.getCharactersSuccess(response);
+      })
+      .fail((jqXhr) => {
+        // make copy of payload
+        let response = assign({}, payload);
+        // insert error text
+        response.error = jqXhr.responseText;;
+        this.getCharactersFail(response);
+      });
+  }
+
 }
 
-export default alt.createActions(KeySearchActions);
+export default alt.createActions(createActions);

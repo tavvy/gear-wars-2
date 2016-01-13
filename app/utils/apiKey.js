@@ -18,5 +18,11 @@ export function validatePermissions(permissions) {
     }
   });
 
+  if(!hasRequiredPermissions) {
+    toastr.error('Key does not have required permissions')
+  } else {
+    toastr.success('Key has required permissions');
+  }
+
   return hasRequiredPermissions;
 }

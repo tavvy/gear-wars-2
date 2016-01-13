@@ -9,12 +9,15 @@ class CharacterProfileActions {
   constructor() {
     this.generateActions(
       'getProfileSuccess',
-      'getProfileFail'
+      'getProfileFail',
+      'getProfileBusy',
+      'cleanProfile'
     );
   }
 
   getProfile(payload) {
     let _this = this;
+
     buildProfileData.fetchProfileData(
       {
         apikey: payload.apikey,
@@ -25,10 +28,15 @@ class CharacterProfileActions {
           _this.getProfileSuccess(result);
         }
         if(err) {
-          _this.getProfileFail(err);
+          if (err.stillBuilding) {
+            _this.getProfileBusy(err.text);
+          } else {
+            _this.getProfileFail(err);
+          }
         }
       }
     );
+
   }
 
 }
