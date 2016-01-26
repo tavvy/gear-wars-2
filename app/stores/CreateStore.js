@@ -65,7 +65,7 @@ class CreateStore {
   onGetCharactersFail(payload) {
     this.characters = null;
     // payload.history.pushState(null, '/characters');
-    toastr.error(payload.error);
+    toastr.error(payload.responseText);
     // TODO actuallly pass error
     // Handle multiple response formats, fallback to HTTP status code number.
     // toastr.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);

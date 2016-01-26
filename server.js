@@ -4,26 +4,20 @@
 // Babel ES6/JSX Compiler
 require('babel-register');
 
-// web framework
 var express = require('express');
 var path = require('path');
-// http req logger
 var logger = require('morgan');
-// parsing POST req data
 var bodyParser = require('body-parser');
-
-
 var _ = require('underscore');
-
 var swig  = require('swig');
 var React = require('react');
 var ReactDOM = require('react-dom/server');
 var Router = require('react-router');
-
 var rp = require('request-promise');
 var errors = require('request-promise/errors');
 
 var routes = require('./app/routes');
+var gw2api = require('./app/utils/gw2api')
 
 var app = express();
 
@@ -32,6 +26,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+var renderGw2apiError = function(reason) {
+  var response = {
+    name: reason.name || null,
+    statusCode: reason.statusCode || null,
+    reason: reason.message || null
+  };
+  return response;
+}
 
 /**
  * GET /api/keysearch
@@ -48,26 +51,12 @@ app.get('/api/keysearch', function(req, res, next) {
     }
   };
 
-  rp(requestLoad)
-  .then(function (body) {
-    let data = JSON.parse(body);
-    res.send(data);
-  })
-  .catch(errors.StatusCodeError, function (reason) {
-    // The server responded with a status codes other than 2xx.
-    // Check reason.response.statusCode.
-    res.status(reason.response.statusCode).send(
-      'gw2api error: ' + reason.response.statusCode
-    );
-  })
-  .catch(errors.RequestError, function (reason) {
-    // The request failed due to technical reasons.
-    // reason.cause is the Error object Request would pass into a callback
-    // TO DO: handle better
-    res.status(500).send(
-      'request error: ' + reason.cause
-    );
-  })
+  gw2api.makeRequest(requestLoad, function(err, response) {
+    if (err) {
+      return res.status(err).send(response);
+    }
+    res.send(response);
+  });
 
 });
 
@@ -86,24 +75,14 @@ app.get('/api/characters', function(req, res, next) {
     }
   };
 
-  rp(requestLoad)
-	.then(function (body) {
-    // TODO: best place to do this?
-    // transform array into object
+  gw2api.makeRequest(requestLoad, function(err, response) {
+    if (err) {
+      return res.status(err).send(response);
+    }
     let data = {};
-		data.characters = JSON.parse(body);
-		res.send(data);
-	})
-  .catch(errors.StatusCodeError, function (reason) {
-    // The server responded with a status codes other than 2xx.
-    // Check reason.response.statusCode.
-    res.status(500).send('gw2api error: ' + reason.response.statusCode)
-  })
-	.catch(errors.RequestError, function (reason) {
-		// The request failed due to technical reasons.
-    // reason.cause is the Error object Request would pass into a callback
-		res.status(500).send('request error: ' + reason.cause);
-	})
+    data.characters = response;
+    res.send(data);
+  });
 
 });
 

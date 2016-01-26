@@ -28,11 +28,11 @@ class createActions {
         let response = assign({}, payload, data);
         this.checkApikeySuccess(response);
       })
-      .fail((jqXhr) => {
+      .fail((err) => {
         // make copy of payload
         let error = {
-          responseText: jqXhr.responseText,
-          statusCode: jqXhr.status
+          statusCode: err.responseJSON.statusCode,
+          responseText: err.responseJSON.reason
         }
         let response = assign({}, payload, error);
         this.checkApikeyFail(response);
@@ -51,11 +51,13 @@ class createActions {
         let response = assign({}, payload, data);
         this.getCharactersSuccess(response);
       })
-      .fail((jqXhr) => {
+      .fail((err) => {
         // make copy of payload
-        let response = assign({}, payload);
-        // insert error text
-        response.error = jqXhr.responseText;;
+        let error = {
+          statusCode: err.responseJSON.statusCode,
+          responseText: err.responseJSON.reason
+        }
+        let response = assign({}, payload, error);
         this.getCharactersFail(response);
       });
   }

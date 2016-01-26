@@ -7,7 +7,7 @@ class HelpBlock extends React.Component {
     if(this.props.data && this.props.data.status == 403) {
       return (
         <span className='help-block'>
-          That key does not work: {this.props.data.status} - {this.props.data.text}
+          That key is invalid: {this.props.data.text}
         </span>
       );
     }
@@ -15,7 +15,7 @@ class HelpBlock extends React.Component {
     if(this.props.data) {
       return (
         <span className='help-block'>
-          {this.props.data.status} - {this.props.data.text}
+          {this.props.data.text}
         </span>
       );
     }
