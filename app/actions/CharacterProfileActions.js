@@ -2,7 +2,7 @@
 
 import alt from '../alt';
 import {assign} from 'underscore';
-import * as buildProfileData from '../utils/buildProfileData';
+import * as profile from '../../models/profile';
 
 class CharacterProfileActions {
 
@@ -16,27 +16,21 @@ class CharacterProfileActions {
   }
 
   getProfile(payload) {
-    let _this = this;
-
-    buildProfileData.fetchProfileData(
+    profile.fetchProfileData(
       {
         apikey: payload.apikey,
         characterName: payload.characterName
       },
-      function (err, result) {
-        if(result) {
-          _this.getProfileSuccess(result);
+      (err, result) => {
+        if (result) {
+          return this.getProfileSuccess(result);
         }
-        if(err) {
-          if (err.stillBuilding) {
-            _this.getProfileBusy(err.text);
-          } else {
-            _this.getProfileFail(err);
-          }
+        if (err.stillBuilding) {
+          return this.getProfileBusy(err.text);
         }
+        this.getProfileFail(err);
       }
     );
-
   }
 
 }

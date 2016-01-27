@@ -3,3 +3,13 @@ npm-debug.log
 bower_components/
 public/css/*
 public/js/*
+.DS_Store
+logs
+*.log
+pids
+*.pid
+*.seed
+build/Release
+.lock-wscript
+.idea
+*.iml

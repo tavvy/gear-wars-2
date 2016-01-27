@@ -4,9 +4,6 @@
 var rp = require('request-promise');
 var errors = require('request-promise/errors');
 
-/*
- * GW2 API WRAPPER
- */
 function renderGw2apiError(reason) {
   var response = {
     name: reason.name || null,
@@ -30,6 +27,6 @@ export function makeRequest(payload, callback) {
   })
   .catch(errors.RequestError, function (reason) {
     // The request failed due to technical reasons
-    callback(500, renderGw2apiError(reason))
+    callback(500, renderGw2apiError(reason));
   })
 }
