@@ -8,9 +8,9 @@
   },
   "main": "server.js",
   "scripts": {
+    "postinstall": "bower install && gulp build",
     "start": "node server.js",
-    "watch": "nodemon server.js",
-    "postinstall": "bower install && gulp build"
+    "watch": "nodemon server.js"
   },
   "babel": {
     "presets": ["es2015", "react"]
