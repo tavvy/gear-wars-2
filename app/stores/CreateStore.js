@@ -15,23 +15,23 @@ class CreateStore {
     this.activeCharacter = null;
   }
 
-  onCheckApikeySuccess(payload) {
-    this.apikey = payload.apikey;
-    this.apikeyValid = apiKeyUtils.validatePermissions(payload.permissions);
-    this.apikeyPermissions = payload.permissions;
+  onCheckApikeySuccess(result) {
+    this.apikey = result.payload.data.apikey;
+    this.apikeyValid = apiKeyUtils.validatePermissions(result.response.permissions);
+    this.apikeyPermissions = result.response.permissions;
     this.helpBlock = {
       status: 'success',
       text: 'api key exists'
     };
   }
 
-  onCheckApikeyFail(payload) {
+  onCheckApikeyFail(error) {
     toastr.error('invalid key');
     this.apikeyValid = false;
     this.apikeyPermissions = null;
     this.helpBlock = {
-      status: payload.statusCode,
-      text: payload.responseText
+      status: error.err.statusCode,
+      text: error.err.responseText
     }
   }
 
@@ -55,20 +55,17 @@ class CreateStore {
     });
   }
 
-  onGetCharactersSuccess(payload) {
+  onGetCharactersSuccess(result) {
     toastr.success('Characters data stored');
-    this.characters = payload.characters;
-    this.activeCharacter = charactersUtils.validateCharacter(payload.characters, payload.preselectName);
+    this.characters = result.response.characters;
+    this.activeCharacter = charactersUtils.validateCharacter(result.response.characters, result.payload.data.preselectName);
     // payload.history.pushState(null, '/characters/' + payload.apikey);
   }
 
-  onGetCharactersFail(payload) {
+  onGetCharactersFail(error) {
     this.characters = null;
+    toastr.error(error.err.responseText);
     // payload.history.pushState(null, '/characters');
-    toastr.error(payload.error);
-    // TODO actuallly pass error
-    // Handle multiple response formats, fallback to HTTP status code number.
-    // toastr.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
   }
 
 }

@@ -2,6 +2,7 @@
 
 import alt from '../alt';
 import {assign} from 'underscore';
+var api = require('../../models/api');
 
 class createActions {
   constructor() {
@@ -17,47 +18,36 @@ class createActions {
   }
 
   checkApikey(payload) {
-    $.ajax({
+
+    api.handleRequest({
       url: '/api/keysearch',
       data: {
         apikey: payload.apikey
       }
-    })
-      .done((data) => {
-        //merge the payload and data
-        let response = assign({}, payload, data);
-        this.checkApikeySuccess(response);
-      })
-      .fail((jqXhr) => {
-        // make copy of payload
-        let error = {
-          responseText: jqXhr.responseText,
-          statusCode: jqXhr.status
-        }
-        let response = assign({}, payload, error);
-        this.checkApikeyFail(response);
-      });
+    }, (err, result) => {
+      if (err) {
+        return this.checkApikeyFail(err);
+      }
+      this.checkApikeySuccess(result);
+    });
+
   }
 
   getCharacters(payload) {
-    $.ajax({
+
+    api.handleRequest({
       url: '/api/characters',
       data: {
-        apikey: payload.apikey
+        apikey: payload.apikey,
+        preselectName: payload.preselectName || null
       }
-    })
-      .done((data) => {
-        //merge the payload and data
-        let response = assign({}, payload, data);
-        this.getCharactersSuccess(response);
-      })
-      .fail((jqXhr) => {
-        // make copy of payload
-        let response = assign({}, payload);
-        // insert error text
-        response.error = jqXhr.responseText;;
-        this.getCharactersFail(response);
-      });
+    }, (err, result) => {
+      if (err) {
+        return this.getCharactersFail(err);
+      }
+      this.getCharactersSuccess(result);
+    });
+
   }
 
 }

@@ -19,13 +19,11 @@ class CharacterProfileStore {
     toastr.success('Profile data stored');
   }
 
-  onGetProfileFail(payload) {
+  onGetProfileFail(error) {
     this.didFail = true;
     this.busy = false;
     this.loadedCharacter = null;
-    toastr.error(payload);
-    // Handle multiple response formats, fallback to HTTP status code number.
-    // toastr.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+    toastr.error('There was an error building the profile data:' + error.err.responseText);
   }
 
   onGetProfileBusy(payload) {

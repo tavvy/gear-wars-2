@@ -1,4 +1,8 @@
+
+'use strict';
+
 import Async from 'async';
+var api = require('./api');
 
 var building = false;
 
@@ -92,9 +96,7 @@ function buildProfile(args, callback) {
         );
       }]
   }, function(err, results) {
-      if (err) {
-        toastr.error('There was an error building the profile data:' + err)
-      } else {
+      if (!err) {
         toastr.success('Finished building profile for ' + CHARACTER);
       }
       callback(err, results.mergeResults);
@@ -104,60 +106,46 @@ function buildProfile(args, callback) {
 }
 
 function getCharacterProfileNew(args, callback) {
-  $.ajax({
-    url: '/api/character',
+  api.handleRequest({
+    url: '/api/characters/' + args.characterName,
     data: {
       apikey: args.apikey,
       characterName: args.characterName
     }
-  })
-    .done((data) => {
-      //merge the payload and data
-      callback(null, data);
-    })
-    .fail((jqXhr) => {
-      // transform error
-      let response = jqXhr.responseText;
-      callback(response);
-    });
+  }, (err, result) => {
+    if (err) {
+      return callback(err);
+    }
+    callback(null, result.response);
+  });
 }
 
 function getItemData(data, callback) {
-  $.ajax({
-    url: '/api/items',
+  api.handleRequest({
+    url: '/api/items/',
     data: {
-      itemIds: data
+      ids: data
     }
-    // beforeSend: this.signalFetch(true),
-    // complete: this.signalFetch(false)
-  })
-    .done((data) => {
-      callback(null, data);
-    })
-    .fail((jqXhr) => {
-      let response = jqXhr.responseText;
-      callback(response);
-    });
+  }, (err, result) => {
+    if (err) {
+      return callback(err);
+    }
+    callback(null, result.response);
+  });
 }
 
 function getSkinData(data, callback) {
-  $.ajax({
-    url: '/api/skins',
+  api.handleRequest({
+    url: '/api/skins/',
     data: {
-      skinIds: data
+      ids: data
     }
-    // beforeSend: this.signalFetch(true),
-    // complete: this.signalFetch(false)
-  })
-    .done((data) => {
-      // this.signalFetch('skinsFetched', true);
-      callback(null, data);
-    })
-    .fail((jqXhr) => {
-      // insert error text
-      let response = jqXhr.responseText;;
-      callback(response);
-    });
+  }, (err, result) => {
+    if (err) {
+      return callback(err);
+    }
+    callback(null, result.response);
+  });
 }
 
 function extractSkinIds(data, callback) {
