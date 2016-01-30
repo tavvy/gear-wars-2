@@ -31,8 +31,8 @@ class Item extends React.Component {
     // if data is passed in via props
     if(this.props.itemData.data) {
       return (
-        <div>
-            <img src={this.props.itemData.skin ? this.props.itemData.skin.icon : this.props.itemData.data.icon} style={{width: '30px', height:'30px'}} />
+        <div className='card'>
+            <img className='card-image' src={this.props.itemData.skin ? this.props.itemData.skin.icon : this.props.itemData.data.icon} style={{width: '30px', height:'30px'}} />
             <small><b>{this.props.itemData.skin ? this.props.itemData.skin.name : this.props.itemData.data.name}</b></small>
             <small> - {this.props.itemData.id}</small>
             <ul>

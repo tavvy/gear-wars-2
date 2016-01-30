@@ -55,26 +55,32 @@ class KeySearch extends React.Component {
     }
   }
 
+  renderLoading() {
+    return (
+      <div className='control is-grouped'>
+        <div className='tag is-large'>API KEY</div>
+        <input type='text' className='input is-medium is-disabled' ref='apikeyField' value={this.state.apikey} autoFocus />
+        <a type='submit' className='button is-medium is-primary is-loading'>Submit</a>
+      </div>
+    )
+  }
+
   renderForm() {
     return (
-      <div className='form-group'>
-        <div className='input-group'>
-          <div className='input-group-addon'>API KEY</div>
-          <input type='text' className='form-control' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} autoFocus />
-        </div>
-        <button type='submit' className='btn btn-primary'>Submit</button>
+      <div className='control is-grouped'>
+        <div className='tag is-large'>API KEY</div>
+        <input type='text' className='input is-medium' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} autoFocus />
+        <button type='submit' className='button is-medium is-primary'>Submit</button>
       </div>
     )
   }
 
   renderDisplay() {
     return (
-      <div className='form-group'>
-        <div className='input-group'>
-          <div className='input-group-addon'>API KEY</div>
-          <input type='text' className='form-control disabled' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} disabled/>
-        </div>
-        <button type='reset' className='btn btn-warning' onClick={this.handleReset.bind(this)}>Reset</button>
+      <div className='control is-grouped'>
+        <div className='tag is-large'>API KEY</div>
+        <input type='text' className='input is-medium is-disabled' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} disabled/>
+        <button type='reset' className='button is-medium is-warning' onClick={this.handleReset.bind(this)}>Reset</button>
       </div>
     )
   }
@@ -84,14 +90,17 @@ class KeySearch extends React.Component {
     if(this.state.apikeyValid == true) {
       formgroup = this.renderDisplay();
     }
+    else if(this.state.loading.apikey == true) {
+      formgroup = this.renderLoading();
+    }
     else {
       formgroup = this.renderForm();
     }
 
     return (
       <section>
-        <label className='sr-only'>Please enter your api key:</label>
-        <form onSubmit={this.handleSubmit.bind(this)} className='form-inline'>
+        <label>Please enter your api key:</label>
+        <form onSubmit={this.handleSubmit.bind(this)}>
           {formgroup}
         </form>
         <HelpBlock data={this.state.helpBlock} />

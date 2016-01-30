@@ -13,6 +13,9 @@ class CreateStore {
     this.requiredPermissions = apiKeyUtils.REQUIRED_PERMISSIONS;
     this.helpBlock = null;
     this.activeCharacter = null;
+    this.loading = {
+      apikey: false
+    };
   }
 
   onCheckApikeySuccess(result) {
@@ -33,6 +36,10 @@ class CreateStore {
       status: error.err.statusCode,
       text: error.err.responseText
     }
+  }
+
+  onSignalLoadingApikey(status) {
+    this.loading.apikey = status;
   }
 
   onUpdateApikey(event) {

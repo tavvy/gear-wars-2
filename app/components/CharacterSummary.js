@@ -9,8 +9,9 @@ class CharacterSummary extends React.Component {
         <section>
           <div className='container'>
             <small>Character Summary:</small>
-            <h1>{this.props.gw2apidata.name}</h1>
-            <h2>{this.props.gw2apidata.level} {this.props.gw2apidata.profession}</h2>
+            <h1 className='title is-1'>{this.props.gw2apidata.name}</h1>
+            <h2 className='subtitle'>{this.props.gw2apidata.level} {this.props.gw2apidata.profession}</h2>
+            <hr/>
           </div>
         </section>
       );

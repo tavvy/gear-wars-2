@@ -3,7 +3,7 @@ import React from 'react';
 class Home extends React.Component {
   render() {
     return (
-      <div className='alert alert-info'>
+      <div>
         Hello from Home Component
       </div>
     );

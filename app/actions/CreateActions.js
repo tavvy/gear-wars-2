@@ -9,6 +9,7 @@ class createActions {
     this.generateActions(
       'updateApikey',
       'resetApikey',
+      'signalLoadingApikey',
       'setActiveCharacter',
       'checkApikeySuccess',
       'checkApikeyFail',
@@ -18,13 +19,14 @@ class createActions {
   }
 
   checkApikey(payload) {
-
+    this.signalLoadingApikey(true);
     api.handleRequest({
       url: '/api/keysearch',
       data: {
         apikey: payload.apikey
       }
     }, (err, result) => {
+      this.signalLoadingApikey(false);
       if (err) {
         return this.checkApikeyFail(err);
       }

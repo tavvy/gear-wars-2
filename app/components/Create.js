@@ -27,7 +27,7 @@ class Create extends React.Component {
 
   componentDidUpdate() {
     console.log('Create state change');
-    // console.log(this.state);
+    console.log(this.state);
   }
 
   render() {
@@ -37,6 +37,7 @@ class Create extends React.Component {
         <div>
           <KeySearch />
           <ListCharacters />
+          <hr />
           <CharacterProfile apikey={this.state.apikey} characterName={this.state.activeCharacter} share={true} />
         </div>
       );
@@ -45,6 +46,7 @@ class Create extends React.Component {
         <div>
           <KeySearch />
           <ListCharacters characterFromParams={this.props.params.character} />
+          <hr />
         </div>
       );
     }
@@ -52,6 +54,7 @@ class Create extends React.Component {
     return (
       <div>
         <KeySearch apikeyFromParams={this.props.params.apikey} />
+        <hr />
       </div>
     );
   }
