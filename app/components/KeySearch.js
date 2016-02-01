@@ -57,31 +57,43 @@ class KeySearch extends React.Component {
 
   renderLoading() {
     return (
-      <div>
-        <div>API KEY</div>
-        <input type='text' ref='apikeyField' value={this.state.apikey} autoFocus />
-        <a type='submit'>Submit</a>
-      </div>
-    )
+      <fieldset disabled>
+        <div className='form-group'>
+          <label>API KEY</label>
+          <div className='input-group'>
+            <input type='text' className='form-control' ref='apikeyField' value={this.state.apikey} autoFocus />
+            <a type='submit' className='btn btn-primary-outline'>Loading...</a>
+          </div>
+        </div>
+      </fieldset>
+      )
   }
 
   renderForm() {
     return (
-      <div>
-        <div>API KEY</div>
-        <input type='text' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} autoFocus />
-        <button type='submit'>Submit</button>
-      </div>
+      <fieldset>
+        <div className='form-group'>
+          <label>API KEY</label>
+          <div className='input-group'>
+            <input type='text' className='form-control' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} autoFocus />
+            <button type='submit' className='btn btn-primary'>Submit</button>
+          </div>
+        </div>
+      </fieldset>
     )
   }
 
   renderDisplay() {
     return (
-      <div>
-        <div>API KEY</div>
-        <input type='text' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} disabled/>
-        <button type='reset' onClick={this.handleReset.bind(this)}>Reset</button>
-      </div>
+      <fieldset>
+        <div className='form-group'>
+          <label>API KEY</label>
+          <div className='input-group'>
+            <input type='text' className='form-control' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} disabled/>
+            <button type='reset' onClick={this.handleReset.bind(this)} className='btn btn-warning'>Reset</button>
+          </div>
+        </div>
+      </fieldset>
     )
   }
 
@@ -99,12 +111,11 @@ class KeySearch extends React.Component {
 
     return (
       <section>
-        <label>Please enter your api key:</label>
         <form onSubmit={this.handleSubmit.bind(this)}>
           {formgroup}
         </form>
-        <HelpBlock data={this.state.helpBlock} />
         <PermissionsChecklist supplied={this.state.apikeyPermissions} required={this.state.requiredPermissions} />
+        <HelpBlock data={this.state.helpBlock} />
       </section>
     );
   }

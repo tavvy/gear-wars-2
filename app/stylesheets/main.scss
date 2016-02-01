@@ -1,31 +1,41 @@
-@import '../../bower_components/toastr/toastr.scss';
+// @import '../../bower_components/toastr/toastr.scss';
 // custom bootstrap vars
 @import './bootstrap_custom.scss';
 // import bootstrap with above vars
 @import "../../bower_components/bootstrap/scss/bootstrap.scss";
 
-//override the card styles
-// #toast-container > div {
-//   @extend .notification;
-// }
+.toast {
+	font-size: $font-size-xs;
+	line-height: 1;
+	padding-bottom: 5px;
+}
 
-// .toast {
-//   background-color: #030303;
-// }
-// .toast-success {
-//   @extend .is-success;
-//   // background-color: #51a351;
-// }
-// .toast-error {
-//   background-color: #bd362f;
-// }
-// .toast-info {
-//   background-color: #2f96b4;
-// }
-// .toast-warning {
-//   background-color: #f89406;
-// }
+.toast-success {
+	// color: #51a351;
+	color: #2f96b4;
+}
+.toast-error {
+	color: #bd362f;
+}
+.toast-info {
+	color: #ccc;
+}
+.toast-warning {
+	color: #f89406;
+}
 
-.m5 {
-  margin: 5px;
+.sticky-sidebar {
+	@include make-col();
+	@include make-col-span(2);
+	// position: fixed;
+	// top: 0;
+	padding: 0;
+}
+
+@include media-breakpoint-up(xl) {
+	.collapsible-container {
+		@include make-container();
+		@include make-container-max-widths();
+		border-left: solid 1px #ddd;
+	}
 }
