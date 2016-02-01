@@ -6,22 +6,18 @@ class HelpBlock extends React.Component {
 
     if(this.props.data && this.props.data.status == 403) {
       return (
-        <span>
-          That key is invalid. details: {this.props.data.text}
-        </span>
+        <small><strong>GW2-API Key is invalid. details: {this.props.data.text}</strong></small>
       );
     }
     // if data is passed in via props
     if(this.props.data) {
       return (
-        <span>
-          {this.props.data.text}
-        </span>
+        <small><strong>{this.props.data.text}</strong></small>
       );
     }
 
     // else show no data
-    return <span>Please enter a valid api key</span>;
+    return <small><strong>Please enter a valid <a href='http://www.gw2.com' className='abbr'>GW2-API Key</a></strong></small>
   }
 }
 

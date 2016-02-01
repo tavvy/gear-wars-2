@@ -74,7 +74,6 @@ class CharacterProfile extends React.Component {
     return (
       <div>
         {shareProfile}
-        <h1>Profile Page</h1>
         <CharacterSummary gw2apidata={this.state.gw2apidata} error={this.state.didFail} />
         <Equipment data={this.state.gw2apidata} />
       </div>

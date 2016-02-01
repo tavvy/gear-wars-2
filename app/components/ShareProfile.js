@@ -7,21 +7,22 @@ class ShareProfile extends React.Component {
   render() {
 
     if(this.props.apikey && this.props.characterName) {
-
       return (
-        <section>
-          <p>
-            <a href={'/create/' + this.props.apikey + '/' + this.props.characterName}>bookmark</a>
-            <br />
-            this.com/create/{this.props.apikey + '/' + this.props.characterName}
-          </p>
-        </section>
+        <div className='pull-right'>
+          <a href={'/create/' + this.props.apikey + '/' + this.props.characterName} className='p-r-1'>
+            <i className='fa fa-bookmark'></i> Bookmark
+          </a>
+          <a href='/'>
+            <i className='fa fa-share'></i> Share
+          </a>
+        </div>
       );
-
     }
 
     return (
-      <div>loading share wizard</div>
+      <a className='pull-right' href='/'>
+        <i className='fa fa-bookmark-o'></i> Loading...
+      </a>
     )
 
   }

@@ -8,14 +8,14 @@ class Equipment extends React.Component {
 
       var equipmentList = this.props.data.equipment.map((item, index) => {
         return (
-          <li key={index}>
+          <li className='list-group-item' key={index}>
             <Item itemData={this.props.data.equipment[index]} />
           </li>
         )
       });
 
       return (
-        <ul>
+        <ul className='list-group'>
           {equipmentList}
         </ul>
       );

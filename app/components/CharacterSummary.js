@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from './Spinner';
 
 class CharacterSummary extends React.Component {
 
@@ -7,12 +8,8 @@ class CharacterSummary extends React.Component {
     if(this.props.gw2apidata) {
       return (
         <section>
-          <div>
-            <small>Character Summary:</small>
-            <h1>{this.props.gw2apidata.name}</h1>
-            <h2>{this.props.gw2apidata.level} {this.props.gw2apidata.profession}</h2>
-            <hr/>
-          </div>
+          <h1>{this.props.gw2apidata.name}</h1>
+          <h2>{this.props.gw2apidata.level} {this.props.gw2apidata.profession}</h2>
         </section>
       );
     }
@@ -22,7 +19,14 @@ class CharacterSummary extends React.Component {
     }
 
     // else show loading
-    return <div>Generating profile data</div>
+    // return (<Spinner text='building character profile' />);
+    return (
+      <div className='m-t-2 text-xs-center'>
+        <i className='loading-spinner'></i>
+        <small><strong>building character profile</strong></small>
+      </div>
+    );
+
   }
 }
 

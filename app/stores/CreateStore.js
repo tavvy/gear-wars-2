@@ -24,7 +24,7 @@ class CreateStore {
     this.apikeyPermissions = result.response.permissions;
     this.helpBlock = {
       status: 'success',
-      text: 'api key is valid'
+      text: 'GW2-API Key is valid'
     };
   }
 
@@ -71,7 +71,7 @@ class CreateStore {
 
   onGetCharactersFail(error) {
     this.characters = null;
-    toastr.error(error.err.responseText);
+    this.activeCharacter = null;
     // payload.history.pushState(null, '/characters');
   }
 

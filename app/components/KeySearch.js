@@ -6,6 +6,7 @@ import CreateActions from '../actions/CreateActions';
 
 import HelpBlock from './HelpBlock';
 import PermissionsChecklist from './PermissionsChecklist';
+import LockIndicator from './LockIndicator';
 
 class KeySearch extends React.Component {
   constructor(props) {
@@ -60,7 +61,7 @@ class KeySearch extends React.Component {
       <fieldset disabled>
         <div className='input-group'>
           <input type='text' className='form-control' ref='apikeyField' value={this.state.apikey} autoFocus />
-          <a type='submit' className='btn btn-primary-outline'>Loading...</a>
+          <a type='submit' className='btn btn-primary is-loading'>Submit</a>
         </div>
       </fieldset>
       )
@@ -102,10 +103,11 @@ class KeySearch extends React.Component {
 
     return (
       <section>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <div className='form-group'>
+        <form onSubmit={this.handleSubmit.bind(this)} className={this.state.apikeyValid ? 'key-search-form is-locked' : 'key-search-form'}>
+          <div className='form-group pa10'>
             <HelpBlock data={this.state.helpBlock} />
             {formgroup}
+            <LockIndicator locked={this.state.apikeyValid} />
             <PermissionsChecklist supplied={this.state.apikeyPermissions} required={this.state.requiredPermissions} />
           </div>
         </form>

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import Spinner from './Spinner';
 
 import CreateStore from '../stores/CreateStore';
 import CreateActions from '../actions/CreateActions';
@@ -49,19 +50,24 @@ class ListCharacters extends React.Component {
       });
 
       return (
-        <section className='text-md-center'>
-          <small>character list</small>
+        <section className='character-summary text-md-center'>
+          <small><strong>Characters</strong></small>
           <ul className='list-inline'>
             {characterList}
           </ul>
+          <hr />
         </section>
       );
 
     }
 
+    // return (<Spinner text='loading characters' />);
     return (
-      <div>loading characters</div>
-    )
+      <div className='m-t-2 text-xs-center'>
+        <i className='loading-spinner'></i>
+        <small><strong>loading characters</strong></small>
+      </div>
+    );
 
   }
 }

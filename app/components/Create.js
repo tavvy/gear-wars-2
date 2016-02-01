@@ -34,27 +34,24 @@ class Create extends React.Component {
 
     if (this.state.apikeyValid && this.state.activeCharacter) {
       return (
-        <div>
+        <div className='container'>
           <KeySearch />
           <ListCharacters />
-          <hr />
           <CharacterProfile apikey={this.state.apikey} characterName={this.state.activeCharacter} share={true} />
         </div>
       );
     } else if(this.state.apikeyValid) {
       return (
-        <div>
+        <div className='container'>
           <KeySearch />
           <ListCharacters characterFromParams={this.props.params.character} />
-          <hr />
         </div>
       );
     }
 
     return (
-      <div>
+      <div className='container'>
         <KeySearch apikeyFromParams={this.props.params.apikey} />
-        <hr />
       </div>
     );
   }
