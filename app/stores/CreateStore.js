@@ -24,7 +24,7 @@ class CreateStore {
     this.apikeyPermissions = result.response.permissions;
     this.helpBlock = {
       status: 'success',
-      text: 'api key exists'
+      text: 'api key is valid'
     };
   }
 

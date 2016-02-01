@@ -7,7 +7,7 @@ class HelpBlock extends React.Component {
     if(this.props.data && this.props.data.status == 403) {
       return (
         <span>
-          That key is invalid: {this.props.data.text}
+          That key is invalid. details: {this.props.data.text}
         </span>
       );
     }
@@ -21,7 +21,7 @@ class HelpBlock extends React.Component {
     }
 
     // else show no data
-    return <span><p>Please enter a valid api key</p></span>;
+    return <span>Please enter a valid api key</span>;
   }
 }
 

@@ -40,8 +40,8 @@ class ListCharacters extends React.Component {
 
       let characterList = this.state.characters.map((character, index) => {
         return (
-          <li key={index}>
-            <a href='/' onClick={this.handleClick.bind(this, character)}>
+          <li key={index} className='list-inline-item'>
+            <a href='/' onClick={this.handleClick.bind(this, character)} className='btn btn-primary-outline btn-sm'>
               {character}
             </a>
           </li>
@@ -49,9 +49,9 @@ class ListCharacters extends React.Component {
       });
 
       return (
-        <section>
+        <section className='text-md-center'>
           <small>character list</small>
-          <ul>
+          <ul className='list-inline'>
             {characterList}
           </ul>
         </section>
