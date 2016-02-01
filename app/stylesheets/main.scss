@@ -1,14 +1,8 @@
 @import '../../bower_components/toastr/toastr.scss';
-// @import '../../bower_components/bulma/bulma';
-@import '../../bower_components/bulma/bulma/utilities/utilities';
-@import '../../bower_components/bulma/bulma/config/variables';
-@import './bulma-var-override'; // bulma overrides
-@import '../../bower_components/bulma/bulma/config/generated-variables';
-@import './bulma-gen-var-override'; // bulma overrides
-@import '../../bower_components/bulma/bulma/base/base';
-@import '../../bower_components/bulma/bulma/elements/elements';
-@import '../../bower_components/bulma/bulma/components/components';
-@import '../../bower_components/bulma/bulma/layout/layout';
+// custom bootstrap vars
+@import './bootstrap_custom.scss';
+// import bootstrap with above vars
+@import "../../bower_components/bootstrap/scss/bootstrap.scss";
 
 //override the card styles
 // #toast-container > div {

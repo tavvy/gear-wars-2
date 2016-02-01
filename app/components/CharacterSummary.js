@@ -7,10 +7,10 @@ class CharacterSummary extends React.Component {
     if(this.props.gw2apidata) {
       return (
         <section>
-          <div className='container'>
+          <div>
             <small>Character Summary:</small>
-            <h1 className='title is-1'>{this.props.gw2apidata.name}</h1>
-            <h2 className='subtitle'>{this.props.gw2apidata.level} {this.props.gw2apidata.profession}</h2>
+            <h1>{this.props.gw2apidata.name}</h1>
+            <h2>{this.props.gw2apidata.level} {this.props.gw2apidata.profession}</h2>
             <hr/>
           </div>
         </section>

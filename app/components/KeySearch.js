@@ -57,30 +57,30 @@ class KeySearch extends React.Component {
 
   renderLoading() {
     return (
-      <div className='control is-grouped'>
-        <div className='tag is-large'>API KEY</div>
-        <input type='text' className='input is-medium is-disabled' ref='apikeyField' value={this.state.apikey} autoFocus />
-        <a type='submit' className='button is-medium is-primary is-loading'>Submit</a>
+      <div>
+        <div>API KEY</div>
+        <input type='text' ref='apikeyField' value={this.state.apikey} autoFocus />
+        <a type='submit'>Submit</a>
       </div>
     )
   }
 
   renderForm() {
     return (
-      <div className='control is-grouped'>
-        <div className='tag is-large'>API KEY</div>
-        <input type='text' className='input is-medium' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} autoFocus />
-        <button type='submit' className='button is-medium is-primary'>Submit</button>
+      <div>
+        <div>API KEY</div>
+        <input type='text' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} autoFocus />
+        <button type='submit'>Submit</button>
       </div>
     )
   }
 
   renderDisplay() {
     return (
-      <div className='control is-grouped'>
-        <div className='tag is-large'>API KEY</div>
-        <input type='text' className='input is-medium is-disabled' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} disabled/>
-        <button type='reset' className='button is-medium is-warning' onClick={this.handleReset.bind(this)}>Reset</button>
+      <div>
+        <div>API KEY</div>
+        <input type='text' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} disabled/>
+        <button type='reset' onClick={this.handleReset.bind(this)}>Reset</button>
       </div>
     )
   }
