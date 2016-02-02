@@ -61,13 +61,7 @@ class ListCharacters extends React.Component {
 
     }
 
-    // return (<Spinner text='loading characters' />);
-    return (
-      <div className='m-t-2 text-xs-center'>
-        <i className='loading-spinner'></i>
-        <small><strong>loading characters</strong></small>
-      </div>
-    );
+    return <Spinner text='loading characters' />
 
   }
 }
