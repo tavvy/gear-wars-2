@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from './Spinner';
 import Item from './Item';
 
 class Equipment extends React.Component {
@@ -22,8 +23,8 @@ class Equipment extends React.Component {
 
     }
     else {
-      // else show no data
-      return <div>loading equipment</div>
+      // else show loading
+      return <Spinner text='building character equipment profile' />;
     }
 
 

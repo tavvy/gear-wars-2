@@ -19,13 +19,7 @@ class CharacterSummary extends React.Component {
     }
 
     // else show loading
-    // return (<Spinner text='building character profile' />);
-    return (
-      <div className='m-t-2 text-xs-center'>
-        <i className='loading-spinner'></i>
-        <small><strong>building character profile</strong></small>
-      </div>
-    );
+    return <Spinner text='building character profile' />;
 
   }
 }

@@ -60,7 +60,7 @@ class KeySearch extends React.Component {
     return (
       <fieldset disabled>
         <div className='input-group'>
-          <input type='text' className='form-control' ref='apikeyField' value={this.state.apikey} autoFocus />
+          <input type='text' className='form-control mr5' ref='apikeyField' value={this.state.apikey} autoFocus />
           <a type='submit' className='btn btn-primary is-loading'>Submit</a>
         </div>
       </fieldset>
@@ -71,7 +71,7 @@ class KeySearch extends React.Component {
     return (
       <fieldset>
         <div className='input-group'>
-          <input type='text' className='form-control' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} placeholder='API KEY' autoFocus />
+          <input type='text' className='form-control mr5' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} placeholder='API KEY' autoFocus />
           <button type='submit' className='btn btn-primary'>Submit</button>
         </div>
       </fieldset>
@@ -82,8 +82,8 @@ class KeySearch extends React.Component {
     return (
       <fieldset>
         <div className='input-group'>
-          <input type='text' className='form-control' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} disabled/>
-          <button type='reset' onClick={this.handleReset.bind(this)} className='btn btn-warning'>Reset</button>
+          <input type='text' className='form-control mr5' ref='apikeyField' value={this.state.apikey} onChange={CreateActions.updateApikey} disabled/>
+          <button type='reset' onClick={this.handleReset.bind(this)} className='btn btn-secondary'>Reset</button>
         </div>
       </fieldset>
     )
@@ -102,9 +102,9 @@ class KeySearch extends React.Component {
     }
 
     return (
-      <section>
+      <section className='bg-gray-lightest m-b-1'>
         <form onSubmit={this.handleSubmit.bind(this)} className={this.state.apikeyValid ? 'key-search-form is-locked' : 'key-search-form'}>
-          <div className='form-group pa10'>
+          <div className='form-group container-pa m-b-0'>
             <HelpBlock data={this.state.helpBlock} />
             {formgroup}
             <LockIndicator locked={this.state.apikeyValid} />

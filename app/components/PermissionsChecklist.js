@@ -14,7 +14,7 @@ class PermissionsChecklist extends React.Component {
         )
       } else if(this.props.supplied && this.props.supplied.indexOf(perm) !== -1) {
         return (
-          <li key={index} className="list-inline-item label label-info">
+          <li key={index} className="list-inline-item label label-success">
             <i className="fa fa-check-circle"></i> {perm}
           </li>
         )
@@ -30,7 +30,7 @@ class PermissionsChecklist extends React.Component {
     if(this.props.required) {
       return (
         <div>
-          <ul className='list-inline'>
+          <ul className='list-inline m-b-0'>
             {permissions}
           </ul>
         </div>

@@ -12,8 +12,8 @@ class ShareProfile extends React.Component {
           <a href={'/create/' + this.props.apikey + '/' + this.props.characterName} className='p-r-1'>
             <i className='fa fa-bookmark'></i> Bookmark
           </a>
-          <a href='/'>
-            <i className='fa fa-share'></i> Share
+          <a href='/' className='btn btn-primary-outline'>
+            <i className='fa fa-share'></i> Share Profile
           </a>
         </div>
       );

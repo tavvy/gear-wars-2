@@ -5,6 +5,14 @@
 @import "../../bower_components/bootstrap/scss/bootstrap.scss";
 @import "./spinner.scss";
 
+.mb5 {
+	margin-bottom: 5px;
+}
+
+.mr5 {
+	margin-right: 5px;
+}
+
 .btn.is-loading {
 	position: relative;
 }
@@ -62,8 +70,8 @@
 	padding-top: 20px;
 }
 
-.pa10 {
-	padding: 10px;
+.container-pa {
+	padding: 5px 10px 10px 10px;
 }
 
 @include media-breakpoint-up(xl) {
@@ -76,11 +84,15 @@
 
 .key-search-form {
 	transition: background-color 1s ease;
-	background: #fff;
+	background: $gray-lightest;
+}
+
+.bg-gray-lightest {
+	background-color: $gray-lightest;
 }
 
 .key-search-form.is-locked {
-	background: $gray-lightest;
+	background: #BFF5CC;
 }
 
 .key-search-form .lock-indicator {
@@ -88,4 +100,8 @@
 	float: right;
 	color: $gray-light;
 	padding: 5px 5px 0 0;
+}
+
+.key-search-form.is-locked .lock-indicator {
+	color: $brand-success;
 }

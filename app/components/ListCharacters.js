@@ -41,8 +41,8 @@ class ListCharacters extends React.Component {
 
       let characterList = this.state.characters.map((character, index) => {
         return (
-          <li key={index} className='list-inline-item'>
-            <a href='/' onClick={this.handleClick.bind(this, character)} className='btn btn-primary-outline btn-sm'>
+          <li key={index} className='list-inline-item mb5'>
+            <a href='/' onClick={this.handleClick.bind(this, character)} className='btn btn-primary btn-sm'>
               {character}
             </a>
           </li>
@@ -50,24 +50,18 @@ class ListCharacters extends React.Component {
       });
 
       return (
-        <section className='character-summary text-md-center'>
+        <section className='character-summary container-pa m-b-1 m-t-0 bg-gray-lightest'>
           <small><strong>Characters</strong></small>
-          <ul className='list-inline'>
+          <ul className='list-inline m-b-0'>
             {characterList}
           </ul>
-          <hr />
         </section>
       );
 
     }
 
-    // return (<Spinner text='loading characters' />);
-    return (
-      <div className='m-t-2 text-xs-center'>
-        <i className='loading-spinner'></i>
-        <small><strong>loading characters</strong></small>
-      </div>
-    );
+    // else loading
+    return <Spinner text='loading characters' />;
 
   }
 }
